@@ -58,6 +58,7 @@
     <el-dialog :visible.sync="aboutVisible" >
       <span>需要设置visible属性，它接收Boolean，当为true时显示 Dialog。Dialog 分为两个部分：body和footer，footer需要具名为footer的slot。title属性用于定义标题，它是可选的，默认值为空。</span>
     </el-dialog>
+    
   </div>
 </template>
 <script>
