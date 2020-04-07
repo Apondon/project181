@@ -56,7 +56,7 @@
     </el-dialog>
     <!-- 关于 -->
     <el-dialog :visible.sync="aboutVisible" >
-      <span>需要设置visible属性，它接收Boolean，当为true时显示 Dialog。Dialog 分为两个部分：body和footer，footer需要具名为footer的slot。title属性用于定义标题，它是可选的，默认值为空。最后，本例还展示了before-close的用法。</span>
+      <span>需要设置visible属性，它接收Boolean，当为true时显示 Dialog。Dialog 分为两个部分：body和footer，footer需要具名为footer的slot。title属性用于定义标题，它是可选的，默认值为空。</span>
     </el-dialog>
   </div>
 </template>
