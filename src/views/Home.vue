@@ -26,7 +26,7 @@
                     <span class="card_title">{{item.title}}</span>
                     <p class="mtp10">{{item.text}}</p>
                     <p>{{item.text}}</p>
-                    <el-button type="primary" class="buyBtn">立即购买</el-button>
+                    <el-button type="primary" class="buyBtn" @click="clickHandle">立即购买</el-button>
                   </el-col>
                 </el-row>
               </el-card>
@@ -139,6 +139,11 @@ export default {
           text:'移动互联网开发配套的书籍有好几本然后买不买无所谓就是凑数的'
         },
       ]
+    }
+  },
+  methods:{
+    clickHandle(){
+      this.$router.push('/detail')
     }
   }
 }
