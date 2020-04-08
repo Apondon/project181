@@ -26,7 +26,7 @@
                     <span class="card_title">{{item.title}}</span>
                     <p class="mtp10">{{item.text}}</p>
                     <p>{{item.text}}</p>
-                    <el-button type="primary" class="buyBtn" @click="clickHandle">立即购买</el-button>
+                    <el-button type="primary" class="buyBtn" @click="clickHandle(item.id)">立即购买</el-button>
                   </el-col>
                 </el-row>
               </el-card>
@@ -142,8 +142,8 @@ export default {
     }
   },
   methods:{
-    clickHandle(){
-      this.$router.push('/detail')
+    clickHandle(id){
+      this.$router.push(`/detail?id=${id}`)
     }
   }
 }
