@@ -38,7 +38,7 @@
                             {{price}}
                         </el-form-item>
                     </el-form>
-                    <el-button type="primary" class="buyButton">立即购买</el-button>
+                    <el-button type="primary" class="buyButton" @click="openDialog">立即购买</el-button>
                 </div>
                 <!-- 下 -->
                 <div class="downPart">
@@ -47,6 +47,21 @@
                 </div>
             </el-col>
         </el-row>
+        <!-- 弹窗 -->
+        <el-dialog :visible.sync="dialogTableVisible">
+            <el-table border :data="gridData">
+                <el-table-column property="name" label="书籍名称" width="150"></el-table-column>
+                <el-table-column property="count" label="购买数量" width="100"></el-table-column>
+                <el-table-column property="school" label="适用校区" width="200"></el-table-column>
+                <el-table-column property="price" label="单价"></el-table-column>
+                <el-table-column label="总价">
+                    <template slot-scope="scope">
+                        <span style='color:red'>{{ scope.row.price*scope.row.count }}</span>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <el-button type="primary">立即购买</el-button>
+        </el-dialog>
     </div>
 </template>
 <script>
@@ -155,19 +170,19 @@ export default {
                 },
             ],
             schools: [{
-                value: '选项1',
+                value: '南阳校区',
                 label: '南阳校区'
                 }, {
-                value: '选项2',
+                value: '郑州校区',
                 label: '郑州校区'
                 }, {
-                value: '选项3',
+                value: '麻省理工',
                 label: '麻省理工'
                 }, {
-                value: '选项4',
+                value: '哈佛大学',
                 label: '哈佛大学'
                 }, {
-                value: '选项5',
+                value: 'UCLA',
                 label: 'UCLA'
             }],
             form:{
@@ -181,6 +196,9 @@ export default {
             name:'',//书名
             text:'',//简介
             content:'', //书籍内容简介
+            // 弹窗
+            dialogTableVisible:false,
+            gridData:[],
         }
     },
     mounted(){
@@ -199,15 +217,23 @@ export default {
             return this.form.price*this.form.count
         }
     },
+    watch:{
+        dialogTableVisible(newVal){
+            if(!newVal) this.gridData = []
+        }
+    },
     methods:{
         redioChangeHandle(){
-            console.log()
             this.bookList.map((item)=>{
             if(item.name == this.form.name) {
                 this.form.price = item.price
                 this.content = item.text
             }
-        })
+            })
+        },
+        openDialog(){
+            this.dialogTableVisible = true
+            this.gridData.push(this.form)
         }
     }
 }
